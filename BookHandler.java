@@ -2,10 +2,13 @@ package cproject;
 import java.util.*;
 import java.util.regex.Pattern;
 
+import cproject.Book;
+
 public class BookHandler {
-   Book bookList[] = new Book[5];
-   
-   int bookCnt = 0;
+   Book bookList[] = new Book[5];//x(array)
+   Vector<Book> BookVector = new Vector<Book>();//declaring new vector
+
+   int bookCnt = 0;//x(array)
    Scanner s;
    
    public BookHandler() {
@@ -13,7 +16,7 @@ public class BookHandler {
    }
    
    void inputBook(){
-      String sPattern = "^[a-zA-Z0-9°¡-ÆR\\s]*$";
+      String sPattern = "^[a-zA-Z0-9ï¿½-ï¿½R\\s]*$";
       int retry = 0;
       boolean regex;
       
@@ -23,58 +26,58 @@ public class BookHandler {
     	 // {
     			  
     		 
-         System.out.print("Ã¥  Á¦¸ñ : ");
+         System.out.print("Ã¥  ï¿½ : ");
          String bookTitle = s.nextLine();
          regex = Pattern.matches(sPattern, bookTitle);
          if(regex != true) {
-            System.out.println("¼ýÀÚ¸¦ Æ÷ÇÔÇÑ ¹®ÀÚ¿­¸¸ ÀÔ·ÂÇÏ¼¼¿ä ");
+            System.out.println("ï¿½Ú¸ï¿½ ï¿½ ï¿½Ú¿ï¿½ ï¿½Ô·ï¿½Ï¼ï¿½ ");
             break;
          }
          
-         System.out.print("Ã¥  ÀúÀÚ : ");
+         System.out.print("Ã¥  ï¿½ : ");
           String bookAuthor = s.nextLine();
           regex = Pattern.matches(sPattern, bookAuthor);
           if(regex != true) {
-             System.out.println("¼ýÀÚ¸¦ Æ÷ÇÔÇÑ ¹®ÀÚ¿­¸¸ ÀÔ·ÂÇÏ¼¼¿ä ");
+             System.out.println("ï¿½Ú¸ï¿½ ï¿½ ï¿½Ú¿ï¿½ ï¿½Ô·ï¿½Ï¼ï¿½ ");
              break;
           }
           
-         System.out.print("ÃâÆÇ»ç : ");
+         System.out.print("ï¿½Ç»ï¿½ : ");
          String bookPublisher = s.nextLine();
          regex = Pattern.matches(sPattern, bookPublisher);
          if(regex != true) {
-            System.out.println("¼ýÀÚ¸¦ Æ÷ÇÔÇÑ ¹®ÀÚ¿­¸¸ ÀÔ·ÂÇÏ¼¼¿ä ");
+            System.out.println("ï¿½Ú¸ï¿½ ï¿½ ï¿½Ú¿ï¿½ ï¿½Ô·ï¿½Ï¼ï¿½ ");
             break;
          }
          
-         System.out.print("Ã¥  ÄÚµå: ");
+         System.out.print("Ã¥  ï¿½Úµï¿½: ");
          String bookCode = s.nextLine();
          regex = Pattern.matches(sPattern, bookCode);
          if(regex != true) {
-            System.out.println("¼ýÀÚ¸¦ Æ÷ÇÔÇÑ ¹®ÀÚ¿­¸¸ ÀÔ·ÂÇÏ¼¼¿ä ");
+            System.out.println("ï¿½Ú¸ï¿½ ï¿½ ï¿½Ú¿ï¿½ ï¿½Ô·ï¿½Ï¼ï¿½ ");
             break;
          }
          
-         System.out.print("Ã¥ °¡°Ý : ");
+         System.out.print("Ã¥ ï¿½ : ");
          int bookPrice = 0;
          
          if(!s.hasNextInt()||(bookPrice= s.nextInt())<0) {
-            System.out.println("Á¤¼ö¸¸ ÀÔ·ÂÇÏ¼¼¿ä ");
+            System.out.println("ï¿½ ï¿½Ô·ï¿½Ï¼ï¿½ ");
             break;
          }
          
-         System.out.print("Ã¥ ÆÇ¸Å·® : ");
+         System.out.print("Ã¥ ï¿½Ç¸Å·ï¿½ : ");
          int bookSale = 0;
          if(!s.hasNextInt()||(bookSale= s.nextInt())<0) {
-            System.out.println("Á¤¼ö¸¸ ÀÔ·ÂÇÏ¼¼¿ä ");
+            System.out.println("ï¿½ ï¿½Ô·ï¿½Ï¼ï¿½ ");
             break;
          }
          
          
-         System.out.print("Ã¥ ÃâÆÇ¿¬µµ : ");
+         System.out.print("Ã¥ ï¿½Ç¿ï¿½ : ");
          int bookYear = 0;
          if(!s.hasNextInt()||(bookYear= s.nextInt())<0) {
-            System.out.println("Á¤¼ö¸¸ ÀÔ·ÂÇÏ¼¼¿ä ");
+            System.out.println("ï¿½ ï¿½Ô·ï¿½Ï¼ï¿½ ");
             break;
          }
          s.nextLine();
@@ -83,13 +86,14 @@ public class BookHandler {
          
          Book book = new Book(bookTitle, bookAuthor, bookPublisher, bookCode, bookPrice, bookSale, bookYear, borrow);
          
-         bookList[bookCnt] = book;
-         bookCnt++;
+         BookVector.add(book);//adding the input book at the end of book vector
+         bookList[bookCnt] = book;//x(array)
+         bookCnt++;//x(array)
          
 
-         if(bookCnt == bookList.length)
+         if(bookCnt == bookList.length) //x(array)
          {
-        	 System.out.println("¹è¿­ °ªÀ» ¸ðµÎ ÃÊ±âÈ­ÇÕ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä");
+        	 System.out.println("ï¿½è¿­ ï¿½ ï¿½ ï¿½Ê±ï¿½È­ï¿½Õ´Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½Ô·ï¿½Ï¼ï¿½");
         	 for(int i = 0; i<bookList.length;i++)
         	 {
         		 
@@ -99,25 +103,27 @@ public class BookHandler {
          }
     		  
     	//  }
-         System.out.println("¶Ç ÀÔ·ÂÇÏ½Ã°Ú¾î¿ä? yes..1 no..0");
+         System.out.println("ï¿½ ï¿½Ô·ï¿½Ï½Ã°Ú¾ï¿½? yes..1 no..0");
          retry = s.nextInt();
          s.nextLine();
       }while(retry!=0);
    }
    
    void outBook() {
-      for(int i = 0; i<bookList.length; i++)
+      //for(int i = 0; i<bookList.length; i++)//x(array)
+      for(int i = 0; i < BookVector.size(); i++)
       {
-         if(bookList[i]!=null)
+         //if(bookList[i]!=null)//x(array)
+         if(BookVector.get(i) != null)
          {
          System.out.println("-------------");
-         System.out.println("Ã¥ Á¦¸ñ : " + bookList[i].getBookTitle());
-         System.out.println("Ã¥ ÀúÀÚ : " + bookList[i].getBookAuthor());
-         System.out.println("ÃâÆÇ»ç: " + bookList[i].getBookPublisher());
-         System.out.println("Ã¥ ÄÚµå : " + bookList[i].getBookCode());
-         System.out.println("Ã¥ °¡°Ý : " + bookList[i].getBookPrice());
-         System.out.println("Ã¥ ÆÇ¸Å·® : " + bookList[i].getBookSale());
-         System.out.println("Ã¥ ÃâÆÇ¿¬µµ : " + bookList[i].getBookYear());
+         System.out.println("Ã¥ ï¿½ : " + bookList[i].getBookTitle());
+         System.out.println("Ã¥ ï¿½ : " + bookList[i].getBookAuthor());
+         System.out.println("ï¿½Ç»ï¿½: " + bookList[i].getBookPublisher());
+         System.out.println("Ã¥ ï¿½Úµï¿½ : " + bookList[i].getBookCode());
+         System.out.println("Ã¥ ï¿½ : " + bookList[i].getBookPrice());
+         System.out.println("Ã¥ ï¿½Ç¸Å·ï¿½ : " + bookList[i].getBookSale());
+         System.out.println("Ã¥ ï¿½Ç¿ï¿½ : " + bookList[i].getBookYear());
          System.out.println();
          }
       }
@@ -125,97 +131,119 @@ public class BookHandler {
    
    void searchBook() {
       
-      System.out.print("Ã¥ Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
+      System.out.print("Ã¥ ï¿½ ï¿½Ô·ï¿½Ö¼ï¿½ : ");
       String bT = s.nextLine();
       
-      for(int i = 0; i<bookList.length;i++)
+      //for(int i = 0; i<bookList.length;i++)//x(array)
+      for(int i = 0; i < BookVector.size(); i++)
       {
-         if(bookList[i]!=null)
+         //if(bookList[i]!=null)//x(array)
+         if(BookVector.get(i) != null)
          {
-            if(bT.equals(bookList[i].getBookTitle()))
+            //if(bT.equals(bookList[i].getBookTitle()))//x(array)
+            if(bT.equals(BookVector.get(i).getBookTitle()))
             {
-               System.out.println("Ã¥ÀÇ Á¦¸ñÀº "+bookList[i].getBookTitle()+"ÀÔ´Ï´Ù."); break;
+               //System.out.println("Ã¥ï¿½ ï¿½ "+bookList[i].getBookTitle()+"ï¿½Ô´Ï´ï¿½.");//x(array) 
+              System.out.println("ì±…ì˜ ì œëª©ì€ " + BookVector.get(i).getBookTitle() + "ìž…ë‹ˆë‹¤.");
+               break;
             }else
-               System.out.println("Ã£´Â Ã¥ÀÌ ¾ø½À´Ï´Ù.");
+               System.out.println("Ã£ï¿½ Ã¥ï¿½ ï¿½Ï´ï¿½.");
          }
       }
    }
    
    void searchBook2() {
       
-      System.out.print("Ã¥ ÀúÀÚ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
+      System.out.print("Ã¥ ï¿½Ú¸ï¿½ ï¿½Ô·ï¿½Ö¼ï¿½ : ");
       String bT = s.nextLine();
       
-      for(int i = 0; i<bookList.length;i++)
+      //for(int i = 0; i<bookList.length;i++)//x(array)
+      for(int i = 0; i < BookVector.size(); i++)
       {
-         if(bookList[i]!=null)
+         //if(bookList[i]!=null)//x(Array)
+         if(BookVector.get(i) != null)
          {
-            if(bT.equals(bookList[i].getBookAuthor()))
+            //if(bT.equals(bookList[i].getBookAuthor()))//x(array)
+            if(bT.equals(BookVector.get(i).getBookAuthor()))
             {
-               System.out.println("Ã¥ÀÇ Á¦¸ñÀº "+bookList[i].getBookTitle()+"ÀÌ°í, ÀúÀÚ´Â "+bookList[i].getBookAuthor()+"ÀÔ´Ï´Ù."); break;
+               //System.out.println("Ã¥ï¿½ ï¿½ "+bookList[i].getBookTitle()+"ï¿½Ì°ï¿½, ï¿½Ú´ï¿½ "+bookList[i].getBookAuthor()+"ï¿½Ô´Ï´ï¿½."); //x(array)
+               System.out.println("ì±…ì˜ ì œëª©ì€ " + BookVector.get(i).getBookTitle() + "ì´ê³ , ì €ìžëŠ” " + BookVector.get(i).getBookAuthor() + "ìž…ë‹ˆë‹¤.");
+               break;
             }else
-               System.out.println("Ã£´Â Ã¥ÀÌ ¾ø½À´Ï´Ù.");
+               System.out.println("Ã£ï¿½ Ã¥ï¿½ ï¿½Ï´ï¿½.");
          }
       }
    }
    
    void searchBook3() {
       
-      System.out.print("ÃâÆÇ»ç¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
+      System.out.print("ï¿½Ç»ç¸¦ ï¿½Ô·ï¿½Ö¼ï¿½ : ");
       String bT = s.nextLine();
       
-      for(int i = 0; i<bookList.length;i++)
+      //for(int i = 0; i<bookList.length;i++)//x(Array)
+      for(int i = 0; i < BookVector.size(); i++)
       {
-         if(bookList[i]!=null)
+         //if(bookList[i]!=null)//x(array)
+         if(BookVector.get(i) != null)
          {
-            if(bT.equals(bookList[i].getBookPublisher()))
+            //if(bT.equals(bookList[i].getBookPublisher()))//x(array)
+            if(bT.equals(BookVector.get(i).getBookPublisher()))
             {
-               System.out.println("Ã¥ÀÇ Á¦¸ñÀº "+bookList[i].getBookTitle()+"ÀÌ°í, ÃâÆÇ»ç´Â "+bookList[i].getBookPublisher()+"ÀÔ´Ï´Ù."); break;
+               //System.out.println("Ã¥ï¿½ ï¿½ "+bookList[i].getBookTitle()+"ï¿½Ì°ï¿½, ï¿½Ç»ï¿½ "+bookList[i].getBookPublisher()+"ï¿½Ô´Ï´ï¿½.");//x(array) 
+               System.out.println("ì±…ì˜ ì œëª©ì€ " + BookVector.get(i).getBookTitle() + "ì´ê³ , ì¶œíŒì‚¬ëŠ” " + BookVector.get(i).getBookPublisher() + "ìž…ë‹ˆë‹¤.");
+               break;
             }else
-               System.out.println("Ã£´Â Ã¥ÀÌ ¾ø½À´Ï´Ù.");
+               System.out.println("Ã£ï¿½ Ã¥ï¿½ ï¿½Ï´ï¿½.");
          }
       }
    }
    
    void searchBook4() {
       
-      System.out.print("ºÏÄÚµå¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
+      System.out.print("ï¿½Úµå¸¦ ï¿½Ô·ï¿½Ö¼ï¿½ : ");
       String bT = s.nextLine();
       
-      for(int i = 0; i<bookList.length;i++)
+      //for(int i = 0; i<bookList.length;i++)//x(array)
+      for(int i = 0; i < BookVector.size(); i++)
       {
-         if(bookList[i]!=null)
+         //if(bookList[i]!=null)//x(array)
+         if(BookVector.get(i) != null)
          {
-            if(bT.equals(bookList[i].getBookCode()))
+            //if(bT.equals(bookList[i].getBookCode()))//x(array)
+            if(bT.equals(BookVector.get(i).getBookCode()))
             {
-               System.out.println("Ã¥ÀÇ Á¦¸ñÀº "+bookList[i].getBookTitle()+"ÀÌ°í, Ã¥ ÄÚµå´Â "+bookList[i].getBookCode()+"ÀÔ´Ï´Ù."); break;
+               //System.out.println("Ã¥ï¿½ ï¿½ "+bookList[i].getBookTitle()+"ï¿½Ì°ï¿½, Ã¥ ï¿½Úµï¿½ "+bookList[i].getBookCode()+"ï¿½Ô´Ï´ï¿½.");//x(array)
+               System.out.println("ì±…ì˜ ì œëª©ì€ " + BookVector.get(i).getBookTitle() + "ì´ê³ , ì±… ì½”ë“œëŠ” " + BookVector.get(i).getBookCode() + "ìž…ë‹ˆë‹¤.");
+                break;
             }else
-               System.out.println("Ã£´Â Ã¥ÀÌ ¾ø½À´Ï´Ù.");
+               System.out.println("Ã£ï¿½ Ã¥ï¿½ ï¿½Ï´ï¿½.");
          }
       }
    }
    
    void searchBook5() {
       
-      System.out.print("Ã¥ °¡°ÝÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
+      System.out.print("Ã¥ ï¿½ ï¿½Ô·ï¿½Ö¼ï¿½ : ");
       int bT = s.nextInt();
       
-      for(int i = 0; i<bookList.length;i++)
+      //for(int i = 0; i<bookList.length;i++)//x(array)
+      for(int i = 0; i < BookVector.size(); i++)
       {
-         if(bookList[i]!=null)
+         //if(bookList[i]!=null)//x(array)
+         if(BookVector.get(i) != null)
          {
             if(bT == bookList[i].getBookPrice())
             {
-               System.out.println("Ã¥ÀÇ Á¦¸ñÀº "+bookList[i].getBookTitle()+"ÀÌ°í, °¡°ÝÀº "+bookList[i].getBookPrice()+"ÀÔ´Ï´Ù."); break;
+               System.out.println("Ã¥ï¿½ ï¿½ "+bookList[i].getBookTitle()+"ï¿½Ì°ï¿½, ï¿½ "+bookList[i].getBookPrice()+"ï¿½Ô´Ï´ï¿½."); break;
             }else
-               System.out.println("Ã£´Â Ã¥ÀÌ ¾ø½À´Ï´Ù.");
+               System.out.println("Ã£ï¿½ Ã¥ï¿½ ï¿½Ï´ï¿½.");
          }
       }
    }
    
    void searchBook6() {
       
-      System.out.print("Ã¥ ÆÇ¸Å·®À» ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
+      System.out.print("Ã¥ ï¿½Ç¸Å·ï¿½ ï¿½Ô·ï¿½Ö¼ï¿½ : ");
       int bT = s.nextInt();
       
       for(int i = 0; i<bookList.length;i++)
@@ -224,16 +252,16 @@ public class BookHandler {
          {
             if(bT==bookList[i].getBookSale())
             {
-               System.out.println("Ã¥ÀÇ Á¦¸ñÀº "+bookList[i].getBookTitle()+"ÀÌ°í, ÆÇ¸Å·®Àº "+bookList[i].getBookSale()+"ÀÔ´Ï´Ù."); break;
+               System.out.println("Ã¥ï¿½ ï¿½ "+bookList[i].getBookTitle()+"ï¿½Ì°ï¿½, ï¿½Ç¸Å·ï¿½ "+bookList[i].getBookSale()+"ï¿½Ô´Ï´ï¿½."); break;
             }else
-               System.out.println("Ã£´Â Ã¥ÀÌ ¾ø½À´Ï´Ù.");
+               System.out.println("Ã£ï¿½ Ã¥ï¿½ ï¿½Ï´ï¿½.");
          }
       }
    }
    
    void searchBook7() {
       
-      System.out.print("Ã¥ ¿¬µµ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
+      System.out.print("Ã¥ ï¿½ ï¿½Ô·ï¿½Ö¼ï¿½ : ");
       int bT = s.nextInt();
       
       for(int i = 0; i<bookList.length;i++)
@@ -242,15 +270,15 @@ public class BookHandler {
          {
             if(bT==bookList[i].getBookYear())
             {
-               System.out.println("Ã¥ÀÇ Á¦¸ñÀº "+bookList[i].getBookTitle()+"ÀÌ°í, ¿¬µµ´Â "+bookList[i].getBookYear()+"ÀÔ´Ï´Ù."); break;
+               System.out.println("Ã¥ï¿½ ï¿½ "+bookList[i].getBookTitle()+"ï¿½Ì°ï¿½, ï¿½ "+bookList[i].getBookYear()+"ï¿½Ô´Ï´ï¿½."); break;
             }else
-               System.out.println("Ã£´Â Ã¥ÀÌ ¾ø½À´Ï´Ù.");
+               System.out.println("Ã£ï¿½ Ã¥ï¿½ ï¿½Ï´ï¿½.");
          }
       }
    }
    
    void sortBook() {
-      System.out.println("ÆÇ¸Å·®¿¡ µû¸¥ ³»¸²Â÷¼ø Á¤·Ä");
+      System.out.println("ï¿½Ç¸Å·ï¿½ ï¿½ ï¿½ ï¿½");
       
       for(int i = 0; i<bookList.length;i++)
          {
@@ -258,7 +286,7 @@ public class BookHandler {
             {
                bookList[i] = new Book("a","a","a","a",0,0,0,0);
                bookCnt++;
-               System.out.println("»ý¼ºÀÚ¸¦ Ãß°¡ÇÏ¿´½À´Ï´Ù.");
+               System.out.println("ï¿½Ú¸ï¿½ ï¿½ß°ï¿½Ï¿ï¿½Ï´ï¿½.");
             } 
          }
          
@@ -268,23 +296,23 @@ public class BookHandler {
       
       for(int i = 0; i<bookList.length;i++)
       {
-         System.out.println("Ã¥ ÀÌ¸§ : " + bookList[i].getBookTitle() + "," +(i+1) + "À§ : " + bookList[i].getBookSale());
+         System.out.println("Ã¥ ï¿½Ì¸ï¿½ : " + bookList[i].getBookTitle() + "," +(i+1) + "ï¿½ : " + bookList[i].getBookSale());
       }
    }
    
    void deleteBook1() {
 
-      System.out.print("»èÁ¦ÇÒ Ã¥ Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
+      System.out.print("ï¿½ Ã¥ ï¿½ ï¿½Ô·ï¿½Ö¼ï¿½ : ");
        String bT = s.nextLine();
        //System.out.println("bC : "+bookCnt);
        for (int i=0; i<bookList.length;i++) {
           if(bookList[i] == null)  
           {
-             //System.out.println("null°ªÀÔ´Ï´Ù.");
+             //System.out.println("nullï¿½Ô´Ï´ï¿½.");
           }
           else if(bT.equals(bookList[i].getBookTitle())){
              bookList[i] = null;
-             System.out.println(bT + " Ã¥ÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.");
+             System.out.println(bT + " Ã¥ï¿½ ï¿½Ç¾ï¿½Ï´ï¿½.");
              bookCnt--;
             // System.out.println("bC : "+bookCnt);
             // System.out.println("i : "+i);
@@ -298,7 +326,7 @@ public class BookHandler {
 //            	 System.out.println("bL[i] : "+bookList[i]);
              }
           }//else
-             //System.out.println("Ã¥ÄÚµå°¡ ¸ÂÁö¾Ê½À´Ï´Ù.");
+             //System.out.println("Ã¥ï¿½Úµå°¡ ï¿½Ê½ï¿½Ï´ï¿½.");
                  
        } 
       
@@ -306,44 +334,44 @@ public class BookHandler {
    
    void deleteBook2() {
 
-         System.out.print("»èÁ¦ÇÒ Ã¥ ÄÚµåÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
+         System.out.print("ï¿½ Ã¥ ï¿½Úµï¿½ ï¿½Ô·ï¿½Ö¼ï¿½ : ");
          String bT = s.nextLine();
          
          for (int i=0; i<bookList.length;i++) {
             if(bookList[i] == null)  
             {
-              //System.out.println("null°ªÀÔ´Ï´Ù.");
+              //System.out.println("nullï¿½Ô´Ï´ï¿½.");
             }
             else if(bT.equals(bookList[i].getBookCode())){
-               System.out.println( bookList[i].getBookTitle() + " Ã¥ÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.");
+               System.out.println( bookList[i].getBookTitle() + " Ã¥ï¿½ ï¿½Ç¾ï¿½Ï´ï¿½.");
                bookList[i] = null;
                bookCnt--;
                
             }//else
-               //System.out.println("Ã¥ÄÚµå°¡ ¸ÂÁö¾Ê½À´Ï´Ù.");
+               //System.out.println("Ã¥ï¿½Úµå°¡ ï¿½Ê½ï¿½Ï´ï¿½.");
                    
          } 
       }
    
    void deleteBook3() {
 
-      System.out.print("±¸Á¶¸¦ ¼³¸íÇÏ°Ú½À´Ï´Ù. Á¦¸ñ ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
+      System.out.print("ï¿½ ï¿½Ï°Ú½ï¿½Ï´ï¿½. ï¿½ ï¿½Ô·ï¿½Ö¼ï¿½ : ");
        String bT = s.nextLine();
        
        for (int i=0; i<bookList.length;i++) {
           if(bookList[i] == null)  
           {
-            // System.out.println("null°ªÀÔ´Ï´Ù.");
+            // System.out.println("nullï¿½Ô´Ï´ï¿½.");
           }
           else if(bT.equals(bookList[i].getBookTitle())){
              bookList[i] = null;
-             System.out.println(bT + " Ã¥ÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.");
+             System.out.println(bT + " Ã¥ï¿½ ï¿½Ç¾ï¿½Ï´ï¿½.");
              System.out.println();
              bookCnt--;
              if(bookCnt == -1)
             	 bookCnt = 1;
           }//else
-            // System.out.println("Ã¥ÄÚµå°¡ ¸ÂÁö¾Ê½À´Ï´Ù.");
+            // System.out.println("Ã¥ï¿½Úµå°¡ ï¿½Ê½ï¿½Ï´ï¿½.");
                  
        } 
       
@@ -351,7 +379,7 @@ public class BookHandler {
    
    void borrowBook() {
       
-       System.out.print("ºô¸± Ã¥ÀÇ Á¦¸ñ¸¦ ¸»ÇØÁÖ¼¼¿ä : ");
+       System.out.print("ï¿½ Ã¥ï¿½ ï¿½ ï¿½Ö¼ï¿½ : ");
        String bName = s.nextLine();
        
       for(int i = 0; i<bookList.length;i++)
@@ -364,10 +392,10 @@ public class BookHandler {
         	
         	if(bookList[i].borrow == 1)
         	{
-        		System.out.println("ÀÌ¹Ì ´ëÃâ");break;
+        		System.out.println("ï¿½Ì¹ï¿½ ï¿½");break;
         	}
         	else {
-        		System.out.println("´ëÃâ ¼º°ø");
+        		System.out.println("ï¿½ ï¿½");
         		bookList[i].borrow = 1;
         		break;
         	}
@@ -379,7 +407,7 @@ public class BookHandler {
    }
    
    void returnBook() {
-	   System.out.print("¹Ý³³ÇÒ Ã¥ÀÇ Á¦¸ñ¸¦ ¸»ÇØÁÖ¼¼¿ä : ");
+	   System.out.print("ï¿½Ý³ï¿½ Ã¥ï¿½ ï¿½ ï¿½Ö¼ï¿½ : ");
 	   String bName = s.nextLine();
       
       for(int i = 0; i<bookList.length;i++)
@@ -390,10 +418,10 @@ public class BookHandler {
          if( bName.equals(bookList[i].getBookTitle())) {
             if(bookList[i].borrow == 0)
             {
-               System.out.println("ÀÌ¹Ì ¹Ý³³");break;
+               System.out.println("ï¿½Ì¹ï¿½ ï¿½Ý³ï¿½");break;
             }
             else {
-               System.out.println("¹Ý³³ ¼º°ø");
+               System.out.println("ï¿½Ý³ï¿½ ï¿½");
                bookList[i].borrow = 0;
                break;
             }
